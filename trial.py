@@ -41,7 +41,6 @@ for letter in alph:
                                             
                     athlete["Gender"] = gender
                     summary_athletes.append(athlete)
-print(summary_athletes)
                 
 import csv
 keys = summary_athletes[0].keys()
