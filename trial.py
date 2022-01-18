@@ -20,29 +20,27 @@ for letter in alph:
                     athlete["Birth Year"] = year[0]
                     athlete["Sport"] = occupation_athlete[2]
                 
-                    gender = "male"
+                    gender = 'male'
                     if 'ontology/college_label' in person:
                         for element in person['ontology/college_label']: 
                             if 'women' in element or 'female' in element:
                                 gender = "female"
-                                
                     elif 'ontology/nationalTeam_label' in person:
                         for element in person['ontology/nationalTeam_label']: 
                             if 'women' in element or 'female' in element:
                                 gender = "female"
-                        
                     elif 'ontology/team_label' in person:
                         for element in person['ontology/team_label']: 
                             if 'women' in element or 'female' in element:
                                 gender = "female"
+                                            
                     athlete["Gender"] = gender
-    
-                    
-
                     summary_athletes.append(athlete)
+print(summary_athletes)
                 
-
-with open ('athletes_summary.csv', 'w') as file:
-    file.write('Name, Birth Year, Sport, Gender\n')
-    for person in summary_athletes:
-        file.write(f"{person}\n")
+import csv
+keys = summary_athletes[0].keys()
+with open("athletes_summary.csv", "w", encoding = 'utf8') as file:
+    dict_writer = csv.DictWriter(file, keys)
+    dict_writer.writeheader()
+    dict_writer.writerows(summary_athletes)
