@@ -17,7 +17,7 @@ for letter in alph:
                 if 'ontology/birthDate' in person and type(person["ontology/birthDate"]) is str:
                     athlete["Name"] = person["title"]
                     year = (person["ontology/birthDate"]).split('-')
-                    athlete["Birth Year"] = year[0]
+                    athlete["Birth_Year"] = year[0]
                     if occupation_athlete[2] == "athlete":
                         athlete["Sport"] = occupation_athlete[3]
                         if occupation_athlete[3] == "Q5":
