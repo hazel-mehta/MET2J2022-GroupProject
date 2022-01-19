@@ -4,7 +4,7 @@ alph = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O
 summary_athletes = []
 
 for letter in alph:
-    with open(f'Group_Repo/People/{letter}_people.json') as file:
+    with open(f'People/{letter}_people.json') as file:
         # 'Group_Repo' is a filename dependent on who is running the code. This is for Hazel's file location
         # it was cool to be able to use the f string function for more than just print. Proved super useful here!
 
@@ -40,41 +40,32 @@ for letter in alph:
                     else:
                         athlete["Sport"] = occupation_athlete[2]
                 
-                    # to set up the next key about gender (as discussed in the proposal/report) we assume everyone is male until "proven" female
+                    # to set up the next key about gender we define them as unspecified unless proven otherwise
                     gender = 'unspecified'
                     if 'ontology/college_label' in person:
                         for element in person['ontology/college_label']: 
                             if 'women' in element or 'female' in element:
                                 gender = "female"
+                            elif 'men' in element or 'male' in element:
+                                gender = "male"
                     elif 'ontology/nationalTeam_label' in person:
                         for element in person['ontology/nationalTeam_label']: 
                             if 'women' in element or 'female' in element:
                                 gender = "female"
+                            elif 'men' in element or 'male' in element:
+                                gender = "male"
                     elif 'ontology/team_label' in person:
                         for element in person['ontology/team_label']: 
                             if 'women' in element or 'female' in element:
                                 gender = "female"
+                            elif 'men' in element or 'male' in element:
+                                gender = "male"
                     elif 'http://purl.org/dc/elements/1.1/description' in person:
                         for element in person['http://purl.org/dc/elements/1.1/description']: 
                             if 'women' in element or 'female' in element:
                                 gender = "female"
-
-                    elif 'ontology/college_label' in person:
-                        for element in person['ontology/college_label']: 
-                            if ' men' in element or ' male' in element:
-                                gender = "male"
-                    elif 'ontology/nationalTeam_label' in person:
-                        for element in person['ontology/nationalTeam_label']: 
-                            if ' men' in element or ' male' in element:
-                                gender = "male"
-                    elif 'ontology/team_label' in person:
-                        for element in person['ontology/team_label']: 
-                            if ' men' in element or ' male' in element or '\"male' in element:
-                                gender = "male"
-                    elif 'http://purl.org/dc/elements/1.1/description' in person:
-                        for element in person['http://purl.org/dc/elements/1.1/description']: 
-                            if ' men' in element or '\"male' in element or ' male' in element:
-                                gender = "male"            
+                            elif 'men' in element or 'male' in element:
+                                gender = "male"          
                                             
                     athlete["Gender"] = gender
 
